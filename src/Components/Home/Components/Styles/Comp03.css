@@ -1,0 +1,28 @@
+.Comp03{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+    row-gap: 2.2rem;
+    padding: 3rem 0;
+    flex-wrap: wrap;
+}
+.Comp03Card{
+    text-align: center;
+}
+.Comp03CardImage{
+    width: 288px;
+    height: 173px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1px;
+    border: 3px solid #00FF1A;
+}
+.Comp03Card > h3{
+    color: #857D79;
+    color: #513934;
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    font-family: "Noto Serif", serif;
+}

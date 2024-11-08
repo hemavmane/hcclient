@@ -1,0 +1,7 @@
+
+Sitemap: https://healthconsultancy.online/sitemap_index.xml
+User-agent: *
+Disallow: /admin
+Disallow: /private
+Disallow: /secret-page
+

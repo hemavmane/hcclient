@@ -1,0 +1,68 @@
+.PrivacyPolicy{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 6rem;
+    background-color: rgba(241, 241, 241, 0.26);
+}
+.PrivacyPolicyContentContainer{
+    max-width: 99%;
+}
+.PrivacyPolicyMainTitleAnddescription{
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+}
+.PrivacyPolicyMainTitleAnddescription>h1{
+    font-size: 16px;
+}
+.PrivacyPolicyMainTitleAnddescription>h1>span:nth-child(1){
+    color: #0072c6;
+}
+.PrivacyPolicyMainTitleAnddescription>h1>span:nth-child(1):hover{
+    color: #34a853;
+    cursor: pointer;
+}
+.PrivacyPolicyMainTitleAnddescription>h1>span:nth-child(2){
+    color: #857D79;
+}
+.PrivacyPolicyMainTitleAnddescription>p{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    max-width: 60rem;
+    margin: 1rem 0;
+}
+.PrivacyPolicyContentContainer>h2{
+    font-size: 24px;
+    color: #0072c6;
+}
+.PrivacyPolicyContentContainer>p{
+    font-size: 16px;
+    color:#df8459;
+    margin-bottom: 0.5rem;
+}
+.FooterPolicy ul li:hover{
+color: #0072c6;
+cursor: pointer;
+}
+
+@media only screen and (max-width:804px) {
+    .PrivacyPolicy{
+        padding: 1rem 2.5rem;
+    }    
+    .PrivacyPolicyMainTitleAnddescription>p {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .PrivacyPolicyContentContainer>h2 {
+        font-size: 21px;
+    }
+}
+@media only screen and (max-width:504px) {
+    .PrivacyPolicy{
+        padding: 1rem 2rem;
+    }    
+}

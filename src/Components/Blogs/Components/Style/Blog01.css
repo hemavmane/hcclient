@@ -1,0 +1,165 @@
+h2{
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: "Noto Serif", serif;
+}
+h3{
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Noto Serif", serif;
+}
+ul{
+    font-family: IBM, Plex, "Serif";
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.Blog01{
+    margin: 2rem 4rem;
+}
+.Blog01>h1{
+    color: #6c7881;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-family: "Noto Serif", serif;
+    margin-bottom: 1rem;
+}
+.Blog01Wrapper01{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.Blog01Wrapper01HeadingAndImage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Blog01Wrapper01HeadingAndImage>img{
+    max-width: 39rem;
+    border-radius: 5px;
+}
+.Blog01Wrapper01Paras{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Blog01Wrapper01Paras p{
+    font-family: IBM, Plex, "Serif";
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.Blog01Wrapper01Paras>article{
+    margin-top: 1rem;
+}
+
+/* Blog01Wrapper02ImageAndBenefits */
+.Blog01Wrapper02ImageAndBenefits{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Blog01Wrapper02SubHeadingAndParaImage{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.Blog01Wrapper02SubHeadingAndParaImage>div>p{
+    font-family: IBM, Plex, "Serif";
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+.Blog01Wrapper02SubHeadingAndParaImage>img{
+    max-width: 39rem;
+    border-radius: 5px;
+}
+.Blog01Wrapper02ImageAndBenefits>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Blog01Wrapper02SubHeadingAndParaImageBenefits{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    margin-left: 2.5rem;
+    gap: 1rem;
+}
+.Blog01Wrapper02SubHeadingAndParaImageBenefits>div>ul{
+    margin-left: 2rem;
+}
+.lastpara{
+    font-family: IBM, Plex, "Serif";
+    text-align: justify;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-top: 2rem;
+}
+
+
+@media only screen and (max-width:1350px){
+    .Blog01Wrapper01{
+        flex-wrap: wrap;
+    }
+    .Blog01Wrapper01HeadingAndImage>img{
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    .Blog01Wrapper02SubHeadingAndParaImage{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .Blog01Wrapper02SubHeadingAndParaImageBenefits{
+        flex-direction:row;
+        justify-content: space-between;
+    }
+    .Blog01Wrapper02SubHeadingAndParaImage>img{
+        max-width: 100%;
+        border-radius: 5px;
+    }
+}
+
+
+@media only screen and (max-width:800px){
+    .Blog01{
+        margin: 1.5rem 1.5rem;
+    }
+    .Blog01>h1{
+        font-size: 1.3rem;
+    }
+    .Blog01Wrapper01Paras p{
+        font-size: 16px;
+    }
+    .Blog01Wrapper02SubHeadingAndParaImage>div>p{
+        font-size: 16px;
+    }
+    ul{
+        font-size: 16px;
+    }
+    .lastpara {
+        font-size: 16px;
+    }
+    .Blog01Wrapper02SubHeadingAndParaImageBenefits{
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width:587px) {
+    .Blog01Wrapper02SubHeadingAndParaImageBenefits{
+        flex-direction: column;
+    }
+    ul{
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,26 @@
+
+
+
+.Blogs{
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+    padding: 0 1rem;
+}
+.CardMainHeading{
+    text-align: center;
+}
+
+@media only screen and (max-width:500px) {
+    .CardMainHeading{
+        font-size:16px;
+    }
+    .css-wt7jgy-MuiTypography-roo{
+        font-weight: 400;
+        font-size: 0.1rem;
+    }
+}

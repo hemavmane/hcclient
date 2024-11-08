@@ -1,0 +1,119 @@
+.Comp01 {
+  background: url("https://avatars.mds.yandex.net/i?id=bc5c07307a57604a8dc62f2f3580d7933aafa877-10849338-images-thumbs&n=13");
+  background-color: #87bce2;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Comp01Contaiber{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 11.5rem;
+}
+.Comp01>.Comp01Contaiber>h1{
+    font-weight: 600;
+    font-size: 65px;
+    color: white;
+    color: #34a853;
+    font-family: "IBM Plex Serif", serif;
+    text-align: center;
+}
+.Comp01>.Comp01Contaiber>p{
+    text-align: center;
+    max-width: 39rem;
+    font-weight:650;
+    font-size: 20px;
+    color: #0072c6;
+    color: #857D79;
+    color: black;
+    font-family: Roboto, sans-serif;
+    /* font-family: "IBM Plex Serif", serif; */
+    /* margin-left: 7.5rem;
+    margin-bottom: -2rem; */
+    text-align: center;
+}
+.Comp01>.Comp01Contaiber>button{
+    margin-top: 2rem;
+    border: none;
+    outline: none;
+    background-color: #0072c6;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 550;
+    color: white;
+    font-size: 14px;
+}
+.Comp01>.Comp01Contaiber>button:hover{
+    background-color: #34a853;
+    cursor: pointer;
+}
+
+
+/* RESPOMSIVE */
+@media only screen and (max-width:1024px) {
+    .Comp01 {
+        height: 75vh;
+      }
+}
+
+@media only screen and (max-width:912px){
+   .Comp01{
+    height: 70vh;
+   } 
+   .Comp01>.Comp01Contaiber>h1 {
+    font-weight: 500;
+    font-size: 50px;
+}
+.Comp01>.Comp01Contaiber>p {
+    text-align: center;
+    max-width: 30rem;
+    font-weight: 500;
+    font-size: 18px;
+}
+}
+
+@media only screen and (max-width:670px){
+    .Comp01{
+        height: 60vh;
+       }
+    .Comp01>.Comp01Contaiber>h1 {
+        font-weight: 700;
+        font-size: 40px;
+    }
+    .Comp01>.Comp01Contaiber>p {
+        max-width: 30rem;
+        font-weight: 500;
+        font-size: 15px;
+    }
+    .Comp01>.Comp01Contaiber>button {
+        margin-top: 1.2rem;
+        padding: 0.6rem 0.8rem;
+        border-radius: 5px;
+        font-weight: 550;
+        font-size: 12px;
+    }
+}
+
+
+@media only screen and (max-width:500px){
+    .Comp01{
+        height: 50vh;
+       }
+    .Comp01>.Comp01Contaiber>h1 {
+        font-weight: 650;
+        font-size: 30px;
+    }
+    .Comp01>.Comp01Contaiber>p {
+        max-width: 30rem;
+        font-weight: 550;
+        font-size: 12px;
+        padding: 0 1rem;
+    }
+}
