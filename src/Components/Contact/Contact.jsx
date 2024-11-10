@@ -22,7 +22,7 @@ const Contact = () => {
   const validationSchema = Yup.object({
     name: Yup.string().required("name is required"),
     Phone: Yup.string().matches(/^\d{10}$/,"Phone number must be 10 digits")
-                      .required("Phone number is required"),
+      .required("Phone number is required"),
     email: Yup.string()
     .required("email is required")
     .email("invalid email format"),
@@ -44,7 +44,7 @@ const Contact = () => {
 
       const config = {
         url: "/contact/addcontact",
-        // baseURL: "http://localhost:8000/api",
+
         baseURL: "https://apihc.gdswellness.com/api",
         method: "post",
         headers: { "Content-type": "application/json" },

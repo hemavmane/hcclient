@@ -33,7 +33,7 @@ const Blogs = () => {
     const plainText = htmlContent.replace(/<\/?[^>]+(>|$)/g, ""); 
     return plainText.length > limit ? plainText.substring(0, limit) + "..." : plainText;
   };
-console.log(blogsdata)
+
   return (
     <div className="Blogs">
       {blogsdata.map((ele, index) => (

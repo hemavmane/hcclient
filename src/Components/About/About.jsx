@@ -1,88 +1,77 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Style/About.css";
-import { AboutData } from "./Content/AboutContent";
-
 import { AboutDataComp04 } from "./Content/AboutContent";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import TabsTitle from "../Utils/TabsTitle";
-
+import { ApiUrl } from "../ApiUrl";
+import getData from "../Methods";
 import Mission from "../Images/Mission.svg";
 import Vision from "../Images/Vision.svg";
-// import icon01 from "../Images/icon01.svg";
-// import icon02 from "../Images/icon02.svg";
-// import icon03 from "../Images/icon03.svg";
-// import icon04 from "../Images/icon04.svg";
-// import icon05 from "../Images/icon05.svg";
-import icon6 from "../Images/icon6.png";
-import icon7 from "../Images/icon7.png";
-import icon8 from "../Images/icon8.png";
-import icon9 from "../Images/icon9.png";
 
-const About = ({ data = AboutData }) => {
+const About = () => {
   TabsTitle("About Us : About The Company");
   const navigate = useNavigate();
 
-  const [facilities, setFacilities] = useState(0);
-  const [capicity, setCapicity] = useState(0);
-  const [clinicians, setClinicians] = useState(0);
-  const [employees, setEmployees] = useState(0);
+  const [aboutData, setAboutData] = useState(null);
+  const [overview, setOverview] = useState([]);
+  const [animatedCounts, setAnimatedCounts] = useState([]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFacilities((prevCount) => {
-        const newCount = prevCount + 1;
-        if (newCount === 23) {
-          clearInterval(interval);
-        }
-
-        return newCount;
-      });
-    }, 200);
-    return () => clearInterval(interval);
+    getAbout();
+    getOverview();
   }, []);
+
+  const getAbout = async () => {
+    try {
+      const response = await getData(ApiUrl.GETABOUT);
+      if (response.status === 200) {
+        setAboutData(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching about data:", error);
+    }
+  };
+
+  const getOverview = async () => {
+    try {
+      const response = await getData(ApiUrl.GETOVERVIEW);
+      if (response.status === 200) {
+        setOverview(response.data);
+        setAnimatedCounts(new Array(response.data.length).fill(0));
+        
+      }
+    } catch (error) {
+      console.error("Error fetching overview data:", error);
+    }
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCapicity((prevCount) => {
-        const newCount = prevCount + 1;
-        if (newCount === 400) {
-          clearInterval(interval);
-        }
-        return newCount;
-      });
-    }, 12);
-    return () => clearInterval(interval);
-  }, []);
+    if (overview.length > 0) {
+      startCountUpAnimation();
+    }
+  }, [overview]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setClinicians((prevCount) => {
-        const newCount = prevCount + 1;
-
-        if (newCount === 550) {
-          clearInterval(interval);
-        }
-        return newCount;
-      });
-    }, 14);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setEmployees((prevCount) => {
-        const newCount = prevCount + 1;
-        if (newCount === 2000) {
-          clearInterval(interval);
-        }
-        return newCount;
-      });
-    }, 1);
-    return () => clearInterval(interval);
-  }, []);
+  const startCountUpAnimation = () => {
+    const intervalTime = 30; 
+    overview.forEach((ele, index) => {
+      const targetCount = ele.counts;
+      const interval = setInterval(() => {
+        setAnimatedCounts((prevCounts) => {
+          const updatedCounts = [...prevCounts];
+          if (updatedCounts[index] < targetCount) {
+            updatedCounts[index] += 1;
+          } else {
+            updatedCounts[index] = targetCount; 
+            clearInterval(interval);
+          }
+          return updatedCounts;
+        });
+      }, intervalTime);
+    });
+  };
+  
 
   return (
     <div className="About">
@@ -92,88 +81,57 @@ const About = ({ data = AboutData }) => {
 
       <div className="AboutContainer02">
         <div className="AboutContainer02TitleAndDescription">
-          <h2>{data.title}</h2>
-          <article>{data.description}</article>
+          <h2>{aboutData?.title}</h2>
+          <article>{aboutData?.description}</article>
         </div>
-
         <div className="AboutContainer02ImageContainer">
           <LazyLoadImage
             className="AboutContainer02Image"
-            src={data.image}
-            alt="IMAGE"
+            src={`${ApiUrl.IMAGEURL}/AboutImage/${aboutData?.aboutImg}`}
+            alt="About Image"
             effect="blur"
           />
         </div>
       </div>
 
       <div className="AboutContainer01">
-        <div>
-          <img style={{ width: "2.5rem" }} src={icon6} alt="" />
-          <div>
-            <h1>{facilities}+</h1>
-            <p>Facilities</p>
+        {overview?.map((ele, index) => (
+          <div key={index}>
+            <img style={{ width: "2.5rem" }} src={`${ApiUrl.IMAGEURL}/OverviewImage/${ele.logo}`} alt={ele.title} />
+            <div>
+              <h1>{animatedCounts[index]}+</h1>
+              <p>{ele.title}</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <img style={{ width: "2.5rem" }} src={icon7} alt="" />
-          <div>
-            <h1>{capicity} +</h1>
-            <p>Bed Capicity</p>
-          </div>
-        </div>
-        <div>
-          <img style={{ width: "2.5rem" }} src={icon8} alt="" />
-          <div>
-            <h1>{clinicians} +</h1>
-            <p>Clinicians</p>
-          </div>
-        </div>
-        <div>
-          <img style={{ width: "2.5rem" }} src={icon9} alt="" />
-          <div>
-            <h1>{employees} +</h1>
-            <p>Employees</p>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="AboutContainer03">
         <div className="AboutContainer03Vision">
-          <img style={{ width: "4rem" }} src={Vision} alt="" />
+          <img style={{ width: "4rem" }} src={Vision} alt="Vision" />
           <h1>Vision</h1>
-          <p>
-            To foster a healthier future for all through personalized healthcare
-            solutions in U.S.A{" "}
-          </p>
+          <p>To foster a healthier future for all through personalized healthcare solutions in U.S.A</p>
         </div>
-
         <div className="AboutContainer03Mission">
-          <img style={{ width: "4rem" }} src={Mission} alt="" />
+          <img style={{ width: "4rem" }} src={Mission} alt="Mission" />
           <h1>Mission</h1>
-          <p>
-            Empowering individuals with expert guidance and innovative
-            strategies for optimal health.{" "}
-          </p>
+          <p>Empowering individuals with expert guidance and innovative strategies for optimal health.</p>
         </div>
       </div>
 
-
-
       <div className="NewAboutContainer04">
-        {AboutDataComp04.map((ele, ind) => {
-          return (
-            <div key={ind} className="NewAboutContainer04Card">
-              <img src={ele.icon} alt="icon" />
-              <h1>{ele.heading}</h1>
-              <ul>
-                {ele.points &&
-                  ele.points.map((point, ind) => (
-                    <li key={ind}>{point.point}</li>
-                  ))}
-              </ul>
-            </div>
-          );
-        })}
+        {AboutDataComp04.map((ele, ind) => (
+          <div key={ind} className="NewAboutContainer04Card">
+            <img src={ele.icon} alt="icon" />
+            <h1>{ele.heading}</h1>
+            <ul>
+              {ele.points &&
+                ele.points.map((point, index) => (
+                  <li key={index}>{point.point}</li>
+                ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
