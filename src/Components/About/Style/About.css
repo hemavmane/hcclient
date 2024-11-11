@@ -231,7 +231,7 @@ max-width: 38rem;
     text-align: center;
     font-family: "IBM Plex Serif", serif;
 }
-.NewAboutContainer04Card>ul{
+.NewAboutContainer04Card>.about_ul_list{
     font-family: IBM, Plex, "Serif";
     font-size: 16px;
     margin: 1rem 0;

@@ -17,6 +17,8 @@ const About = () => {
   const [aboutData, setAboutData] = useState(null);
   const [overview, setOverview] = useState([]);
   const [animatedCounts, setAnimatedCounts] = useState([]);
+  const [Mission, setMission] = useState([])
+  const [companyValue, setCompanyValue] = useState([])
 
   useEffect(() => {
     getAbout();
@@ -26,6 +28,20 @@ const About = () => {
   const getAbout = async () => {
     try {
       const response = await getData(ApiUrl.GETABOUT);
+      const mission = await getData(ApiUrl.GETMISSION);
+      const CompanyValue = await getData(ApiUrl.GETCARDS);
+      if (mission.status === 200) {
+        const sortData = mission.data.sort((a, b) => a.order - b.order);
+        setMission(sortData);
+
+
+      }
+      if (CompanyValue.status === 200) {
+        const CompanyValueData = CompanyValue.data.sort((a, b) => a.order - b.order);
+        setCompanyValue(CompanyValueData);
+
+
+      }
       if (response.status === 200) {
         setAboutData(response.data);
       }
@@ -37,10 +53,11 @@ const About = () => {
   const getOverview = async () => {
     try {
       const response = await getData(ApiUrl.GETOVERVIEW);
+
       if (response.status === 200) {
         setOverview(response.data);
         setAnimatedCounts(new Array(response.data.length).fill(0));
-        
+
       }
     } catch (error) {
       console.error("Error fetching overview data:", error);
@@ -54,7 +71,7 @@ const About = () => {
   }, [overview]);
 
   const startCountUpAnimation = () => {
-    const intervalTime = 30; 
+    const intervalTime = 30;
     overview.forEach((ele, index) => {
       const targetCount = ele.counts;
       const interval = setInterval(() => {
@@ -63,7 +80,7 @@ const About = () => {
           if (updatedCounts[index] < targetCount) {
             updatedCounts[index] += 1;
           } else {
-            updatedCounts[index] = targetCount; 
+            updatedCounts[index] = targetCount;
             clearInterval(interval);
           }
           return updatedCounts;
@@ -71,7 +88,7 @@ const About = () => {
       }, intervalTime);
     });
   };
-  
+
 
   return (
     <div className="About">
@@ -107,7 +124,7 @@ const About = () => {
       </div>
 
       <div className="AboutContainer03">
-        <div className="AboutContainer03Vision">
+        {/* <div className="AboutContainer03Vision">
           <img style={{ width: "4rem" }} src={Vision} alt="Vision" />
           <h1>Vision</h1>
           <p>To foster a healthier future for all through personalized healthcare solutions in U.S.A</p>
@@ -116,10 +133,19 @@ const About = () => {
           <img style={{ width: "4rem" }} src={Mission} alt="Mission" />
           <h1>Mission</h1>
           <p>Empowering individuals with expert guidance and innovative strategies for optimal health.</p>
-        </div>
+        </div> */}
+        {
+          Mission.map((ele) => (
+            <div className="AboutContainer03Mission">
+              <img style={{ width: "4rem" }} src={`${ApiUrl.IMAGEURL}/MissionImage/${ele.missionImg}`} alt={ele.title} />
+              <h1>{ele.title}</h1>
+              <p>{ele.subtitle}</p>
+            </div>
+          ))
+        }
       </div>
 
-      <div className="NewAboutContainer04">
+      {/* <div className="NewAboutContainer04">
         {AboutDataComp04.map((ele, ind) => (
           <div key={ind} className="NewAboutContainer04Card">
             <img src={ele.icon} alt="icon" />
@@ -130,6 +156,19 @@ const About = () => {
                   <li key={index}>{point.point}</li>
                 ))}
             </ul>
+          </div>
+        ))}
+      </div> */}
+      <div className="NewAboutContainer04">
+        {companyValue?.map((ele, ind) => (
+          <div key={ind} className="NewAboutContainer04Card">
+            <img src={`${ApiUrl.IMAGEURL}/CompanyValueImage/${ele.logo}`} alt="icon" />
+            <h1>{ele.title}</h1>
+            {ele.description && (<div className="about_ul_list"
+              dangerouslySetInnerHTML={{ __html: ele.description }} />
+            )}
+
+
           </div>
         ))}
       </div>
