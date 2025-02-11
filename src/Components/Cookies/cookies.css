@@ -1,0 +1,42 @@
+.cookiesbtn {
+    width: auto;
+    padding: 5px 16px;
+    word-spacing: 6px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #34a853, rgb(29, 198, 201)); 
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    width: fit-content;
+    
+  }
+  
+  .cookiesbtn:hover {
+    background: linear-gradient(45deg, #34a853, rgb(29, 198, 201)); 
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .cookiesbtn:active {
+    background-color: #1e6f57;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+  }
+.cookiesbg{
+  background-color: rgb(29, 198, 201);
+  color: white;
+}
+
+  @media only screen and (max-width:768px) {
+    .cookiesbtn{
+        width: 100%;
+        max-width: 320px;
+        margin-bottom: 20px;
+      }
+  }

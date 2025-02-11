@@ -7,9 +7,8 @@ import Footer from "./Components/Footer/Footer";
 import { useLocation } from "react-router-dom";
 import Blogs from "./Components/Blogs/Blogs";
 import Blog01 from "./Components/Blogs/Components/Blog01";
-import Blog02 from "./Components/Blogs/Components/Blog02";
-import Blog03 from "./Components/Blogs/Components/Blog03";
-
+import CookieManager from "./Components/Cookies/Cookies";
+import 'bootstrap/dist/css/bootstrap.min.css';
 // Importing components lazily
 const Home = React.lazy(() => import("./Components/Home/Home"));
 const PrivacyPolicy = React.lazy(() => import("./Components/PrivacyPolicy/PrivacyPolicy"));
@@ -41,8 +40,13 @@ function App() {
           <Route path="/policy/refundPolicy" element={<RefundPolicy />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <div className="cookies">
+          <CookieManager className="" />
+        </div>
       </Suspense>  
-
+      
+    
+       
       {/* <Suspense
         fallback={
           <div
