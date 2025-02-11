@@ -1,8 +1,8 @@
 export const ApiUrl = {
-    // BASEURL: "https://apihc.gdswellness.com/api",
-    // IMAGEURL: "https://apihc.gdswellness.com",
-    BASEURL: "http://localhost:8200/api",
-    IMAGEURL: "http://localhost:8200",
+    BASEURL: "https://apihc.gdswellness.com/api",
+    IMAGEURL: "https://apihc.gdswellness.com",
+    // BASEURL: "http://localhost:8200/api",
+    // IMAGEURL: "http://localhost:8200",
     GETSERVICE: "/service/getdata",
     GETBANNER: "/banner/getdata",
     GETPROVIDERTRUST: "/ptrust/getdata",
