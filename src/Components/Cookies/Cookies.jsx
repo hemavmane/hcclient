@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {Button,Modal,Form,Alert,Container,Row,Col} from 'react-bootstrap';
-import  "./cookies.css";
-import { ApiUrl } from "../ApiUrl";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const CookieManager = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +15,7 @@ const CookieManager = () => {
     analytics: true,
     marketing: true,
     functional: true,
-    advertising: false,
+    advertising: true,
   });
 
   useEffect(() => {
@@ -27,7 +31,7 @@ const CookieManager = () => {
       setError('');
       const userEmail = localStorage.getItem('email') || 'anonymous@example.com';
       const userName = localStorage.getItem('name') || 'Anonymous User';
-      
+
       // Store preferences first
       localStorage.setItem('cookiePreferences', JSON.stringify(updatedPreferences));
       setShowBanner(false);
@@ -35,9 +39,9 @@ const CookieManager = () => {
       // Backend communication
       const ipResponse = await fetch('https://ipinfo.io/json?token=c50d94473fb8f0');
       if (!ipResponse.ok) throw new Error('Failed to fetch location data');
-      
+
       const { ip, city, region, country } = await ipResponse.json();
-      
+
       const consentData = {
         consent: true,
         preferences: updatedPreferences,
@@ -45,7 +49,7 @@ const CookieManager = () => {
         user: { email: userEmail, name: userName },
       };
 
-      const response = await fetch(`${ApiUrl.BASEURL}/cookies/create`, {
+      const response = await fetch('https://api.justoconsulting.com/api/cookies/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(consentData),
@@ -95,32 +99,29 @@ const CookieManager = () => {
 
   return (
     <>
-      <div className="fixed-bottom  shadow p-4 cookiesbg text-center">
-        <Container className='row d-flex'> 
-          <Row className="align-items-center justify-content-center">
-            <Col md={12}>
-              <p className="mb-md-0 ">
-                This site uses cookies and related technologies for site operation, analytics, and advertising. 
+      <div className="fixed-bottom  shadow p-4 bg-success">
+        <Container>
+          <Row className="align-items-center">
+            <Col md={8}>
+              <p className="mb-md-0 text-white">
+                This site uses cookies and related technologies for site operation, analytics, and advertising.
                 You may choose to consent to our use of these technologies, or manage your own preferences.
               </p>
-              <Col md={12} className="text-md-end d-flex justify-content-center">
-              <Button 
-              
-               
+            </Col>
+            <Col md={4} className="text-md-end">
+              <Button
                 onClick={() => setShowModal(true)}
-                className="me-2 cookiesbtn align-self-end"
+                className="me-2 border-0 btn-md-lg fw-semibold px-4 py-2 mt-3 align-self-end bg-pink text-dark"
               >
                 Manage Preferences
               </Button>
               <Button
-                className='cookiesbtn align-self-end'
+                className='border-0 btn-md-lg fw-semibold px-4 py-2 mt-3 align-self-end bg-lightBlue text-dark'
                 onClick={handleAcceptAll}
               >
                 Accept All
               </Button>
             </Col>
-            </Col>
-            
           </Row>
         </Container>
       </div>
@@ -129,7 +130,7 @@ const CookieManager = () => {
         <Modal.Header closeButton>
           <Modal.Title>Cookie Preferences</Modal.Title>
         </Modal.Header>
-        <Modal.Body> 
+        <Modal.Body>
           {error && (
             <Alert variant="danger" className="mb-3">
               {error}
@@ -150,8 +151,8 @@ const CookieManager = () => {
                   </div>
                   <Form.Check
                     type="switch"
-                    className=''
                     checked={value}
+                    disabled={key === 'analytics' || key === 'advertising'}
                     onChange={(e) =>
                       setPreferences((prev) => ({ ...prev, [key]: e.target.checked }))
                     }
@@ -162,14 +163,11 @@ const CookieManager = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button  className='cookiesbtn' onClick={handleDeclineAll}>
-            Decline All
-          </Button>
-          <Button className='cookiesbtn' onClick={handleAcceptAll}>
+          <Button className='border-0 btn-md-lg fw-semibold px-4 py-2 mt-3 align-self-end bg-lightBlue text-dark' onClick={handleAcceptAll}>
             Accept All
           </Button>
-          <Button className='cookiesbtn' onClick={handleSavePreferences}>
-            Save 
+          <Button className='border-0 btn-md-lg fw-semibold px-4 py-2 mt-3 align-self-end bg-lightBlue text-dark' onClick={handleSavePreferences}>
+            Save Preferences
           </Button>
         </Modal.Footer>
       </Modal>
